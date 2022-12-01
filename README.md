@@ -5,7 +5,9 @@
 **Simon Freeman**
 **A01074210**
 
-**Load Balancer IP to test my server:** 146.190.15.205
+**Load Balancer IP to test my server:** http://146.190.15.205/
+
+**If you want to copy paste it into the browser yourself:** 146.190.15.205
 
 ### Setup
 
@@ -352,7 +354,7 @@ You can use the command `systemctl status` followed by the name of the service t
 
 ### Testing load balancer
 
-If everything was configured and set up properly, you should be able to visit your server by using the load balancer IP that was created. In the case of this example, it is 146.190.15.205
+If everything was configured and set up properly, you should be able to visit your server by using the load balancer IP that was created. In the case of this example, it is **http://146.190.15.205/**
 
 This should bring load one of the **index.html** pages that are in your droplets. If you keep refreshing the page, eventually it should swap between the html documents.
 
@@ -362,8 +364,7 @@ Example:
 
 ![step9_load_balancer_server2](images/step9_load_balancer_server2.png)
 
-If you add /api in to the url after the IP, it will show the 
-the return statement on line 6 in the **index.js** file . 
+If you add /api in to the url after the IP (http://146.190.15.205/api), it will show the the return statement on line 6 in the **index.js** file . 
 
 Depending on which server it loads from, it should show a different message if you made sure to return a different message on each file.
 
