@@ -352,7 +352,7 @@ You can use the command `systemctl status` followed by the name of the service t
 
 ### Testing load balancer
 
-If everything was configured and set up properly, you should be able to visit your server by using the load balancer IP that was created. In the case of this example, it is [146.190.15.205](146.190.15.205)
+If everything was configured and set up properly, you should be able to visit your server by using the load balancer IP that was created. In the case of this example, it is 146.190.15.205
 
 This should bring load one of the **index.html** pages that are in your droplets. If you keep refreshing the page, eventually it should swap between the html documents.
 
