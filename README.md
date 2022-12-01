@@ -6,7 +6,7 @@
 **A01074210**
 
 **Load Balancer IP to test my server:**
-*146.190.15.205*
+*[146.190.15.205](146.190.15.205)*
 
 ### Setup
 
@@ -127,7 +127,7 @@ Output of the command will look like this:
 
 ![step4_npm_i_fastify](images/step4_npm_i_fastify.png)
 
-Afterwards, creating an `index.js` file in your `src` directory. Add in this fastify hello world example code:
+Afterwards, create an `index.js` file in your `src` directory. Add in this fastify hello world example code:
 
 ```bash
 vim index.js
@@ -154,7 +154,7 @@ const start = async () => {
 start()
 ```
 
-**Note** to complete the rest of the steps, the code will need to be altered slightly. The code alteration will be demonstrated in the following steps.
+**Note**: to complete the rest of the steps, the code will need to be altered slightly. The code alteration will be demonstrated in the following steps **(step 8).**
 
 Afterwards, test that your server is working locally. You can do this with the following node command:
 
@@ -183,9 +183,9 @@ vim Caddyfile
 
 In addition to having code for a basic server block, a reverse proxy server will also be added to the Caddyfile. 
 
-Te reverse proxy should forward localhost:5050 (http:/127.0.0.1:5050).
+The reverse proxy should forward localhost:5050 (http:/127.0.0.1:5050).
 
-This allows a user who types /api after the url to load the `hello: 'Server x'` onto the browser.
+This allows a user who types /api after the url to load the `hello: 'Server x'` from line 6 of the **index.js** onto the browser.
 
 It should look similar to this: 
 
@@ -193,7 +193,7 @@ It should look similar to this:
 
 ### Installing node and npm with Volta
 
-Install node and npm with Volta. This should be done on your local machine as well as your two droplets. To install volta, use the following command:
+Install node and npm with Volta. This should be done on your local machine as well as your two droplets. To install Volta, use the following command:
 
 ```bash
 curl https://get.volta.sh | bash
@@ -215,7 +215,7 @@ After you have done this you should be able to see two lines added to your .bash
 
 ![step6_bashrc_updated](images/step6_bashrc_updated.png)
 
-Afterwards, install `node` with Volta. `npm` will be isntalled alongside node. Use the following command:
+Afterwards, install `node` with Volta. `npm` will be installed alongside node. Use the following command:
 
 ![step6_install_node](images/step6_install_node.png)
 
@@ -253,7 +253,7 @@ SyslogIdentifier=hello_web
 [Install]
 WantedBy=multi-user.target
 ```
-In `ExecStart`, the full path to your application and the node binary must be used.
+In `ExecStart`, the full path to your application and the node binary must be used. You can find the full path to your application and node binary with `which node`.
 
 `User` and `Group` should be the name and group of your regular user.
 `SyslogIdentifier` means "system log identifier". Information about the daemon is logged under this name in the system logs. You can also use this identifier to find the PID of your process.
@@ -353,7 +353,7 @@ You can use the command `systemctl status` followed by the name of the service t
 
 ### Testing load balancer
 
-If everything was configured and set up properly, you should be able to visit your server by using the load balancer IP that was created. In the case of this example, it is **146.190.15.205**.
+If everything was configured and set up properly, you should be able to visit your server by using the load balancer IP that was created. In the case of this example, it is [146.190.15.205](146.190.15.205)
 
 This should bring load one of the **index.html** pages that are in your droplets. If you keep refreshing the page, eventually it should swap between the html documents.
 
@@ -363,7 +363,7 @@ Example:
 
 ![step9_load_balancer_server2](images/step9_load_balancer_server2.png)
 
-If you add /api in to the url after the IP (http://146.190.15.205/api), it will show the 
+If you add /api in to the url after the IP ([146.190.15.205/api](146.190.15.205/api)), it will show the 
 the return statement on line 6 in the **index.js** file . 
 
 Depending on which server it loads from, it should show a different message if you made sure to return a different message on each file.
