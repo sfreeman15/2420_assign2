@@ -5,7 +5,7 @@
 **Simon Freeman**
 **A01074210**
 
-## Setup
+### Setup
 
 This assignment will require several things to set up:
 - VPC
