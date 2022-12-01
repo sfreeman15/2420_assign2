@@ -9,7 +9,7 @@
 
 **If you want to copy paste it into the browser yourself:** 146.190.15.205
 
-### Setup
+## Setup
 
 This assignment will require several things to set up:
 - VPC
@@ -47,7 +47,7 @@ Add an additional inbound rule for HTTP and make the source the load balancer th
 
 Once you have completed all these steps, **your setup is complete.**
 
-### Installing Web Servers
+## Installing Web Servers
 
 Once you have created regular users for each of your droplets, install a web server on **both of them**. In the context of this example, **Caddy** is being used. Make sure to not configure web servers yet.
 
@@ -85,7 +85,7 @@ sudo cp caddy /usr/bin/
 
 **Repeat all of these steps in your other droplet server.**
 
-### Writing a web app
+## Writing a web app
 
 On your local machine (in WSL if you are on Windows) create a directory. In this example the directory is named `2420-assign-two`. Inside the directory, create 2 more directories called `html` and `src`:
 
@@ -174,7 +174,7 @@ Once you've tested your server locally, you can move the `html` and `src` direct
 
 ![step4_sftpsrc](images/step4_sftpsrc.png)
 
-### Writing the Caddyfile
+## Writing the Caddyfile
 
 Write the Caddyfile on your local machine. 
 
@@ -192,7 +192,7 @@ It should look similar to this:
 
 ![step5_caddyfile_code](images/step5_caddyfile_code.png)
 
-### Installing node and npm with Volta
+## Installing node and npm with Volta
 
 Install node and npm with Volta. This should be done on your local machine as well as your two droplets. To install Volta, use the following command:
 
@@ -224,7 +224,7 @@ You can verify the installation by using the `node` command. Output should look 
 
 ![step6_verify_node_installation](images/step6_verify_node_installation.png)
 
-### Writing a service file
+## Writing a service file
 
 To start the node application, you will need a service file. Create one on your local machine.
 
@@ -285,7 +285,7 @@ KillMode=mixed
 WantedBy=multi-user.target
 ```
 
-### Uploading server block and service file to droplets
+## Uploading server block and service file to droplets
 
 Upload your server block and service files to your droplets with `sftp`
 
@@ -352,7 +352,7 @@ You can use the command `systemctl status` followed by the name of the service t
 
 ![step8_caddyservice](images/step8_caddyservice.png)
 
-### Testing load balancer
+## Testing load balancer
 
 If everything was configured and set up properly, you should be able to visit your server by using the load balancer IP that was created. In the case of this example, it is **http://146.190.15.205/**
 
