@@ -5,7 +5,8 @@
 **Simon Freeman**
 **A01074210**
 
-
+**Load Balancer IP to test my server:**
+*146.190.15.205*
 
 ### Setup
 
@@ -192,7 +193,7 @@ It should look similar to this:
 
 ### Installing node and npm with Volta
 
-Install node and npm with Volta. To install volta, use the following command:
+Install node and npm with Volta. This should be done on your local machine as well as your two droplets. To install volta, use the following command:
 
 ```bash
 curl https://get.volta.sh | bash
@@ -202,7 +203,7 @@ The output of the command should look like this:
 
 ![step6_install_volta](images/step6_install_volta.png)
 
-For volta to start working you need to open a new terminal.
+For Volta to start working you need to open a new terminal.
 
 Before using `node`, you need to `source` the `.bashrc` after installing Volta.
 
@@ -232,9 +233,27 @@ vim hello_web.service
 
 In this example it is named **hello_web.service.** The service file should be configured to restart the service on failure. This can be accomplished with `Restart=on-failure` in the `[Service]` section. You will also need to make it so the service file should require a configured network. This can be accomplished with `After=network-online.target` and `Wants=network-online.target` in the `[Unit]` section.
 
-The configuration should look similar to the screenshot below:
+The configuration should look like this:
 
-![step7_hello_web_vim](images/step7_hello_web_vim.png)
+```bash
+[Unit]
+Description=Restarts the service on failure, and creates requirement a configured network
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/home/simon/.volta/bin/node /home/simon/src/index.js
+Restart=on-failure
+User=simon
+Group=simon
+RestartSec=10
+TimeoutStopSec=90
+SyslogIdentifier=hello_web
+
+[Install]
+WantedBy=multi-user.target
+```
+In `ExecStart`, the full path to your application and the node binary must be used.
 
 `User` and `Group` should be the name and group of your regular user.
 `SyslogIdentifier` means "system log identifier". Information about the daemon is logged under this name in the system logs. You can also use this identifier to find the PID of your process.
@@ -262,4 +281,98 @@ TimeoutStopSec=5
 KillMode=mixed
 
 [Install]
-WantedBy=multi-user.target```
+WantedBy=multi-user.target
+```
+
+### Uploading server block and service file to droplets
+
+Upload your server block and service files to your droplets with `sftp`
+
+![step8_move_withsftp](images/step8_move_withsftp.png)
+
+To be able to show the difference between content on the servers, change one of your **index.html** to demonstrate the difference:
+
+![step8_editing_HTML](images/step8_editing_HTML.png)
+
+Afterwards, make sure your files are in the appropriate directories.
+
+Create a directory called **www** in `/var`. 
+
+Move your index.html to `/var/` with `sudo mv index.html`
+
+Make a directory in `/etc` called **caddy** with `sudo mkdir /etc/
+caddy`. Move your **Caddyfile** to `/etc/caddy` with `sudo mv Caddyfile /etc/caddy`
+
+Move your `hello_web.service` and `caddy.service` to `/etc/systemd/system`
+```bash
+sudo mv hello_web.service /etc/systemd/system
+sudo mv caddy.service /etc/systemd/system
+```
+
+Before we do anything else, make sure to edit the **index.js** files on both of your droplets so that they work properly. Use this code block inside your **index.js**
+
+```bash
+const fastify = require('fastify')({ logger: true })
+const fs = require("fs")
+
+fastify.get('/api', async (request,reply) => {
+        //reply.sendFile('../html/index.html')
+        //return fs.createReadStream('/var/www/index.html', 'utf8')
+        return { hello: 'Hello from Server 2'}
+
+})
+
+const start = async () => {
+        try {
+                await fastify.listen({ port: 5050 })
+        } catch (err) {
+                fastify.log.error(err)
+        process.exit(1)
+        }
+}
+start(
+
+)
+```
+Make sure the `return { hello: 'Hello from Server 2'}` on line 6 is slightly different between droplets to differentiate between them when the load balancer is activated.
+
+Afterwards, you can start and enable both your service files on each droplet.
+
+```bash
+systemctl start hello_web.service
+systemctl enable hello_web.service
+systemctl start caddy.service
+systemctl enable caddy.service
+```
+
+You can use the command `systemctl status` followed by the name of the service to see if they are active and running. The output should look like this:
+
+![step8_systemctlstatushelloweb](images/step8_systemctlstatushelloweb.png)
+
+![step8_caddyservice](images/step8_caddyservice.png)
+
+### Testing load balancer
+
+If everything was configured and set up properly, you should be able to visit your server by using the load balancer IP that was created. In the case of this example, it is **146.190.15.205**.
+
+This should bring load one of the **index.html** pages that are in your droplets. If you keep refreshing the page, eventually it should swap between the html documents.
+
+Example:
+
+![step9_load_balancer_server1](images/step9_load_balancer_server1.png)
+
+![step9_load_balancer_server2](images/step9_load_balancer_server2.png)
+
+If you add /api in to the url after the IP (http://146.190.15.205/api), it will show the 
+the return statement on line 6 in the **index.js** file . 
+
+Depending on which server it loads from, it should show a different message if you made sure to return a different message on each file.
+
+Example:
+
+![step9_api_server1](images/step9_api_server1.png)
+
+![step9_api_server2](images/step9_api_server2.png)
+
+If everything above works, all of the setup should be complete! 
+:grinning:	
