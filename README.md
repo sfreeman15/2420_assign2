@@ -13,5 +13,6 @@ This assignment will require several things to set up:
 - Load Balancer
 - Firewall (DigitalOcean Cloud Firewall)
 
-To begin, create a VPC. 
+Create a VPC in Digital Ocean
 ![step1_vpc_san_fran](images/step1_vpc_san_fran.png)
+![step1_vpc](images/step1_vpc.png)
