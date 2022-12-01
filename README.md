@@ -14,4 +14,4 @@ This assignment will require several things to set up:
 - Firewall (DigitalOcean Cloud Firewall)
 
 To begin, create a VPC. 
-![VPC San Fran](./images/step1_vpc_san_fran)
+![step1_vpc_san_fran](./images/step1_vpc_san_fran)
