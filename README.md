@@ -4,6 +4,7 @@
 
 **Simon Freeman**
 **A01074210**
+------------
 
 ### Setup
 
@@ -42,6 +43,7 @@ Add an additional inbound rule for HTTP and make the source the load balancer th
 ![step1_firewall](images/step1_firewall.png)
 
 Once you have completed all these steps, **your setup is complete.**
+------------
 
 ### Installing Web Servers
 
