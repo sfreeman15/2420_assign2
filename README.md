@@ -35,7 +35,7 @@ Make sure that the load balancer is connected to the two droplets by using the t
 
 Add an additional inbound rule for HTTP and make the source the load balancer that was created. Apply the firewall rules to the droplets by using the tag associated with the droplets.
 
-![step1_firewall_rules](images/step1_firewall_rules.png)
+![step1_firewallrule](images/step1_firewallrule.png)
 
 ![step_fwall_droplet](images/step_fwall_droplet.png)
 
