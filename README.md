@@ -5,8 +5,7 @@
 **Simon Freeman**
 **A01074210**
 
-**Load Balancer IP to test my server:**
-**146.190.15.205**
+**Load Balancer IP to test my server:** 146.190.15.205
 
 ### Setup
 
