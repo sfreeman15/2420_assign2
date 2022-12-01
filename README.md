@@ -363,7 +363,7 @@ Example:
 
 ![step9_load_balancer_server2](images/step9_load_balancer_server2.png)
 
-If you add /api in to the url after the IP ([146.190.15.205/api](146.190.15.205/api)), it will show the 
+If you add /api in to the url after the IP (146.190.15.205/api), it will show the 
 the return statement on line 6 in the **index.js** file . 
 
 Depending on which server it loads from, it should show a different message if you made sure to return a different message on each file.
