@@ -1,0 +1,16 @@
+[Unit]
+Description=Restarts the service on failure, and creates requirement a configured network
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/home/simon/.volta/bin/node /home/simon/src/index.js
+Restart=on-failure
+User=simon
+Group=simon
+RestartSec=10
+TimeoutStopSec=90
+SyslogIdentifier=hello_web
+
+[Install]
+WantedBy=multi-user.target
