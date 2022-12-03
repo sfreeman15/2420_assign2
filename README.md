@@ -37,7 +37,7 @@ Make sure that the load balancer is connected to the two droplets by using the t
 
 **Create a firewall in Digital Ocean**
 
-Add an additional inbound rule for HTTP and make the source the load balancer that was created. Apply the firewall rules to the droplets by using the tag associated with the droplets.
+Add an additional inbound rule for HTTP and make the source the load balancer that was created. Apply the firewall rules to the droplets by using the tag associated with the droplets. All the other options can be left as default.
 
 ![step1_firewallrule](images/step1_firewallrule.png)
 
