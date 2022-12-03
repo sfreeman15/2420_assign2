@@ -301,8 +301,7 @@ Create a directory called **www** in `/var`.
 
 Move your index.html to `/var/` with `sudo mv index.html`
 
-Make a directory in `/etc` called **caddy** with `sudo mkdir /etc/
-caddy`. Move your **Caddyfile** to `/etc/caddy` with `sudo mv Caddyfile /etc/caddy`
+Make a directory in `/etc` called **caddy** with `sudo mkdir /etc/caddy`. Move your **Caddyfile** to `/etc/caddy` with `sudo mv Caddyfile /etc/caddy`
 
 Move your `hello_web.service` and `caddy.service` to `/etc/systemd/system`
 ```bash
