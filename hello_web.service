@@ -1,5 +1,5 @@
 [Unit]
-Description=Restarts the service on failure, and creates requirement a configured network
+Description=Starts the node app, and restarts the service on failure
 After=network-online.target
 Wants=network-online.target
 
